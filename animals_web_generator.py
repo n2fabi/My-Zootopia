@@ -12,18 +12,23 @@ output = ''
 
 for animal in animals_data:
     output += '<li class="cards__item">\n'
-
     if "name" in animal:
-        output += f"Name: {animal['name']}<br/>\n"
-    if "locations" in animal and animal["locations"]:
-        output += f"Location: {animal['locations'][0]}<br/>\n"
+        output += f'<div class="card__title">{animal["name"]}</div>\n'
+    output += '<p class="card__text">\n'
+
     if "characteristics" in animal:
         characteristics = animal["characteristics"]
         if "diet" in characteristics:
-            output += f"Diet: {characteristics['diet']}<br/>\n"
-        if "type" in characteristics:
-            output += f"Type: {characteristics['type']}<br/>\n"
+            output += f'<strong>Diet:</strong> {characteristics["diet"]}<br/>\n'
 
+    if "locations" in animal and animal["locations"]:
+        output += f'<strong>Location:</strong> {animal["locations"][0]}<br/>\n'
+
+    if "characteristics" in animal:
+        if "type" in animal["characteristics"]:
+            output += f'<strong>Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
+
+    output += '  </p>\n'
     output += '</li>\n'
 
 
