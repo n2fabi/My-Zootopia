@@ -11,17 +11,20 @@ animals_data = load_data('animals_data.json')
 output = ''
 
 for animal in animals_data:
+    output += '<li class="cards__item">\n'
+
     if "name" in animal:
-        output += f"Name: {animal['name']}\n"
+        output += f"Name: {animal['name']}<br/>\n"
     if "locations" in animal and animal["locations"]:
-        output += f"Location: {animal['locations'][0]}\n"
-    if "characteristics" in animal: # diet and type are part of the characteristics dict
+        output += f"Location: {animal['locations'][0]}<br/>\n"
+    if "characteristics" in animal:
         characteristics = animal["characteristics"]
         if "diet" in characteristics:
-            output += f"Diet: {characteristics['diet']}\n"
+            output += f"Diet: {characteristics['diet']}<br/>\n"
         if "type" in characteristics:
-            output += f"Type: {characteristics['type']}\n"
-    output += "\n"
+            output += f"Type: {characteristics['type']}<br/>\n"
+
+    output += '</li>\n'
 
 
 
@@ -32,7 +35,7 @@ def load_html(file_path):
 
 html = load_html("animals_template.html")
 
-html.replace("__REPLACE_ANIMALS_INFO__",output)
+html = html.replace("__REPLACE_ANIMALS_INFO__",output)
 
 def write_html(file_path,html_code):
     with open(file_path,"w") as html_file:
