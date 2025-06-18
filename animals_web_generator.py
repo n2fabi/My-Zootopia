@@ -1,4 +1,7 @@
 import json
+import requests
+
+
 
 def load_data(file_path):
   """ Loads a JSON file """
@@ -39,8 +42,15 @@ def serialize_animal(animal_obj):
     return output
 
 
-#load data
-animals_data = load_data('animals_data.json')
+#load data from API
+name = 'Fox'
+api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
+response = requests.get(api_url, headers={'X-Api-Key': 'Y5Tzh0xkyRsNErgMavh+7w==Mm73JEFprF65dUyY'})
+if response.status_code == requests.codes.ok:
+    print(response.text)
+else:
+    print("Error:", response.status_code, response.text)
+animals_data = response.json()
 
 #format animal data
 output = ''
