@@ -43,7 +43,7 @@ def serialize_animal(animal_obj):
 
 
 #load data from API
-name = 'Fox'
+name = input("Enter a name on an animal: ")
 api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
 response = requests.get(api_url, headers={'X-Api-Key': 'Y5Tzh0xkyRsNErgMavh+7w==Mm73JEFprF65dUyY'})
 if response.status_code == requests.codes.ok:
@@ -63,4 +63,7 @@ html = load_html("animals_template.html")
 html = html.replace("__REPLACE_ANIMALS_INFO__",output)
 
 #write html
-write_html("animals.html",html)
+file_path = "animals.html"
+write_html(file_path,html)
+
+print(f"Website for info about the animal {name} was successfully generated to the file {file_path}.")
