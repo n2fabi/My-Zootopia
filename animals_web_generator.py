@@ -53,9 +53,12 @@ else:
 animals_data = response.json()
 
 #format animal data
-output = ''
-for animal_obj in animals_data:
-    output += serialize_animal(animal_obj)
+if animals_data == []:
+    output = f"<h2>The animal {name} doesn't exist.</h2>"
+else:
+    output = ''
+    for animal_obj in animals_data:
+        output += serialize_animal(animal_obj)
 
 
 #load and replace html
