@@ -1,5 +1,5 @@
 import json
-import requests
+import data_fetcher
 
 
 
@@ -44,12 +44,8 @@ def serialize_animal(animal_obj):
 
 #load data from API
 name = input("Enter a name on an animal: ")
-api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
-response = requests.get(api_url, headers={'X-Api-Key': 'Y5Tzh0xkyRsNErgMavh+7w==Mm73JEFprF65dUyY'})
-if response.status_code == requests.codes.ok:
-    print(response.text)
-else:
-    print("Error:", response.status_code, response.text)
+
+response = data_fetcher.fetch_data(name)
 animals_data = response.json()
 
 #format animal data
